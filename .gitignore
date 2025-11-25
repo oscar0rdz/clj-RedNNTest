@@ -1,0 +1,37 @@
+# Clojure
+/target/
+/classes/
+/lib/
+/checkouts/
+.cpcache/
+pom.xml
+*.jar
+*.class
+
+# nREPL
+.nrepl-port
+.nrepl-*
+
+# Calva
+.calva/
+
+# clj-kondo
+.clj-kondo/
+
+# LSP
+.lsp/
+
+# VSCode
+.vscode/
+
+# Project specific
+node_modules/
+/src/gen
+/build
+pom.xml.asc
+*.iml
+*.log
+.shadow-cljs
+.idea
+.lein-*
+.DS_Store
