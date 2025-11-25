@@ -47,11 +47,11 @@ Durante el desarrollo del proyecto se utilizaron dos apoyos principales:
 
 Espacio para captura del cuaderno:
 
-```md
+
 <p align="center">
   <img src="images/Captura NB.png" alt="Cuaderno de estudio en NotebookLM sobre Clojure y redes neuronales" width="880">
 </p>
-```
+
 
 ---
 
