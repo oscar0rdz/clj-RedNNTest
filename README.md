@@ -1,4 +1,4 @@
-# clj-RedNNTest – Red neuronal en Clojure desde cero
+## clj-RedNNTest – Red neuronal en Clojure desde cero
 
 clj-RedNNTest es un proyecto de práctica para aprender Clojure construyendo una red neuronal completamente desde cero.  
 El objetivo no es solo tener un modelo que funcione, sino usar cada archivo y cada función como pretexto para entender mejor:
