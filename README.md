@@ -152,15 +152,15 @@ Incluye:
 
 Espacio para la imagen generada por el modelo:
 
-```md
+
 <p align="center">
   <img src="images/Captura.png" alt="Frontera de decisión aprendida por la red 2-8-2" width="640">
 </p>
-
+## Modelo 
 <p align="center">
   <img src="images/decision_boundary.svg" alt="Frontera de decisión aprendida por la red 2-8-2" width="640">
 </p>
-```
+
 
 ### 6. Reproducibilidad (nn.rng)
 
