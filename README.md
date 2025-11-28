@@ -1,23 +1,21 @@
-## clj-RedNNTest – Red neuronal en Clojure desde cero
+## clj-RedNNTest RedNN Clojure
 
-clj-RedNNTest es un proyecto de práctica para aprender Clojure construyendo una red neuronal completamente desde cero.  
-El objetivo no es solo tener un modelo que funcione, sino usar cada archivo y cada función como pretexto para entender mejor:
+Este proyetco lo relice con el objetrivo de  aprender Clojure  de forma mas practicca  y visual creando una red neuronal basica pero desde el inicio que detecte numeros. Tratandod e no usar las librerias basandome en un poryetco que vi en Redit  
+El objetivo no es solo ceear la red  que funcione, sino  quise aprovechar y entender de froma clara que es y que hace que enfocndome en :
+- La sintaxis y el estilo funcional de Clojure comparado con Python
+- Cómo se implementa una red neuronal feedforward básica y como funciona en clojure 
+- Cómo conectar todo en un flujo correcto de datos, entrenamiento y visualizaciónde los resulatdos.
 
-- La sintaxis y el estilo funcional de Clojure.
-- Cómo se implementa una red neuronal feedforward básica.
-- Cómo conectar todo en un flujo reproducible de datos, entrenamiento y visualización.
-
-El proyecto se apoya conceptualmente en la serie de videos de 3Blue1Brown sobre redes neuronales y en un cuaderno de estudio en NotebookLM, donde se organizaron las notas sobre Clojure y sobre el diseño de la red.
 
 ---
 
-## Motivación y objetivos
+## Objetivo
 
-La idea central de este repositorio es aprender Clojure a través de un ejemplo concreto y completo:
+La idea central es hacer que el red pueda aprender que tenga cobnsitencia y que se peuda ver 
 
 1. Usar una red neuronal sencilla para tener un hilo conductor claro.
-2. Implementar todo a mano: generación de datos, operaciones matemáticas, entrenamiento y visualización.
-3. Mantener el código lo suficientemente simple como para poder leerlo casi línea por línea y razonar sobre lo que pasa en cada etapa.
+2. Implementar todo a mano (menos visualizacion): generación de datos, operaciones matemáticas, entrenamiento.
+3. Mantener el código lo suficientemente simple como para poder leerlo casi línea por línea y razonar sobre lo que pasa en cada etapa y por que.
 
 El resultado es un proyecto pequeño, pero con el ciclo completo:
 
@@ -31,7 +29,7 @@ El resultado es un proyecto pequeño, pero con el ciclo completo:
 
 ## Referencias de estudio
 
-Durante el desarrollo del proyecto se utilizaron dos apoyos principales:
+Durante el desarrollo del proyecto se utilizaron dos apoyos principales ya que no hay mucha info como para otros lemguajes tube que crear el rodamap de estudio para Clojure en NotebookLM:
 
 1. **Serie de videos de 3Blue1Brown sobre redes neuronales**  
    Se tomó como referencia la forma en que explica:
@@ -74,20 +72,20 @@ clj-RedNNTest/
    └─ decision_boundary.svg ; Fichero generado con la frontera de decisión
 ```
 
-Cada archivo tiene una responsabilidad clara:
+Cada archivo:
 
 - `data.clj` define cómo se generan y preparan los datos.
-- `math.clj` concentra las funciones matemáticas de bajo nivel.
+- `math.clj` concentra las funciones matemáticas de lo que es  bajo nivel.
 - `model.clj` describe la red neuronal y el algoritmo de entrenamiento.
-- `core.clj` orquesta todo el flujo: datos → modelo → métricas → visualización.
+- `core.clj` se maneja todo el flujo: datos → modelo → métricas → visualización.
 - `visualization.clj` crea una imagen SVG de la frontera de decisión.
-- `rng.clj` asegura que los resultados sean reproducibles mediante una semilla fija.
+
 
 ---
 
 ## Descripción técnica del modelo
 
-### 1. Arquitectura de la red (nn.core / nn.model)
+###  Arquitectura de la red (nn.core / nn.model)
 
 - Tipo de red: feedforward para clasificación binaria.
 - Arquitectura: **2 → 8 → 2**
@@ -104,7 +102,7 @@ Parámetros por defecto del entrenamiento:
 - Batch size: 16
 - Puntos por clase: 400
 
-### 2. Algoritmo de entrenamiento (nn.model)
+###  Algoritmo de entrenamiento  del modelo (nn.model)
 
 - Método de optimización: mini-batch Stochastic Gradient Descent.
 - Backpropagation implementado de forma explícita:
@@ -118,9 +116,8 @@ Parámetros por defecto del entrenamiento:
   - Exactitud (accuracy) en el conjunto de prueba.
   - MSE en el conjunto de prueba.
 
-### 3. Operaciones matemáticas (nn.math)
+###  Operaciones matemáticas (nn.math)
 
-Incluye:
 
 - Producto punto.
 - Suma y resta de vectores.
@@ -129,17 +126,16 @@ Incluye:
 - Función ReLU y su derivada (preparadas para futuras extensiones).
 - Utilidades para aplicar funciones elemento a elemento sobre vectores.
 
-### 4. Generación de datos sintéticos (nn.data)
+### . Generación de datos  (nn.data)
 
 - Generación de dos clusters con distribución aproximadamente normal.
 - Uso de un método tipo Box-Muller para obtener puntos gaussianos.
 - Normalización de las coordenadas al rango [0, 1] mediante min-max scaling.
 - Etiquetas codificadas en one-hot para las dos clases.
 
-### 5. Visualización de la frontera de decisión (nn.visualization)
+###  Visualización de la frontera de decisión (nn.visualization)
 
-- Salida en formato SVG.
-- Tamaño aproximado: 640 x 640 píxeles.
+
 - Se construye una cuadrícula de puntos en el plano de entrada.
 - Para cada punto del grid se evalúa la red y se colorea en función de la probabilidad.
 - Paleta de colores:
@@ -148,9 +144,9 @@ Incluye:
 - Se dibujan:
   - Los puntos del dataset.
   - La frontera de decisión implícita en los cambios de color.
-  - Una pequeña leyenda.
+ 
 
-Espacio para la imagen generada por el modelo:
+
 
 
 <p align="center">
@@ -162,7 +158,7 @@ Espacio para la imagen generada por el modelo:
 </p>
 
 
-### 6. Reproducibilidad (nn.rng)
+###  Reproducibilidad (nn.rng)
 
 - Semilla fija: `1337`.
 - Funciones auxiliares para:
@@ -257,23 +253,22 @@ Para experimentar de forma interactiva:
    (def model (nn/train 20 0.5 16 400))
    ```
 
-4. Extender el experimento modificando parámetros, trazando nuevas fronteras o cambiando la arquitectura.
+
 
 ---
 
-## Resultados esperados
+## Resultados 
 
-Con la configuración por defecto, el problema es razonablemente separable y se espera:
+No quise complicra mucho el aprendizaje si no entender mas bien comos erealiza el problema es razonablemente separable y se espera:
 
 - Exactitud en el conjunto de prueba por encima de 0.95.
-- MSE en el conjunto de prueba por debajo de 0.05 al final del entrenamiento.
-- Una frontera de decisión suave que separa claramente los dos clusters en el SVG generado.
+
 
 ---
 
 ## Guía de lectura del código
 
-Una forma recomendada de estudiar el proyecto es la siguiente:
+la forma visual de entender el proyecto es la siguiente:
 
 1. `rng.clj`  
    Ver cómo se define la semilla y se generan números aleatorios reproducibles.
@@ -294,16 +289,3 @@ Una forma recomendada de estudiar el proyecto es la siguiente:
    Analizar cómo se convierte la salida del modelo en una imagen SVG de la frontera de decisión.
 
 ---
-
-## Posibles extensiones
-
-Algunas ideas para seguir experimentando con el proyecto:
-
-- Añadir más funciones de activación (tanh, leaky ReLU).
-- Hacer que la arquitectura sea configurable desde parámetros externos.
-- Probar con otros tipos de datasets (XOR, espirales, medias móviles de series de tiempo).
-- Incorporar regularización (L2, dropout).
-- Guardar y cargar pesos entrenados para comparar distintas corridas.
-- Extender las métricas con matrices de confusión y medidas como F1.
-
-Este repositorio está pensado para ser un laboratorio pequeño, donde se puedan probar cambios en el modelo y observar directamente su efecto en el entrenamiento y en la frontera de decisión.
